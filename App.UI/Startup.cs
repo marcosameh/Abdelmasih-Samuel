@@ -81,9 +81,9 @@ namespace App.UI
                 app.UseHsts();
             }
 
-            app.UseRewriter(new RewriteOptions()
-            .AddRedirectToHttps()
-            .AddRedirectToWwwPermanent());
+            //app.UseRewriter(new RewriteOptions()
+            //.AddRedirectToHttps()
+            //.AddRedirectToWwwPermanent());
 
             app.UseDefaultFiles();
             app.UseStaticFiles(new StaticFileOptions
