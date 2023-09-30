@@ -1,0 +1,154 @@
+
+/*---==================
+    03. About css 
+=================----*/
+
+/* About Image Box */ 
+
+.about-one_image-box{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    @media #{$xs}{
+        flex-wrap: nowrap;
+    }
+    & .about-img-one{
+        width: 51%;
+        @media #{$xs}{
+            width: calc(50% - 15px);
+            margin-bottom: 0;
+        }
+    }
+    & .about-img-two{
+        width: 44%;
+        @media #{$xs}{
+            width: calc(50% - 15px);
+            margin-bottom: 0;
+        }
+    }
+    & .icon-box{
+        position: absolute;
+        top: 50%;
+        left: 53%;
+        @include transform(translate(-53%,-50%));
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        @extend %flex-center;
+        background-color: $orange;
+        font-size: 80px;
+        color: #fff;
+        @media #{$xs}{
+            top: 45%;
+            width: 100px;
+            height: 100px;
+            @include transform(translate(-53%,-45%));
+            img{
+                width: 40%;
+            }
+        }
+    }
+}
+
+.about-two_image-box{
+    & .avatar-box-item{
+        position: relative;
+        margin-inline-start: auto;
+        margin-top: -115px;
+        margin-inline-end: -40px;
+        @media #{$lm}{
+            margin-inline-end: 0;
+        }
+    }
+}
+
+/* About Content Box */ 
+
+.about-content-box{
+    & .experience-box{
+        padding-top: 50px;
+        border-top: 1px solid rgba(28, 35, 31, 0.1);
+    }
+}
+
+/* Avatar box item */ 
+
+.avatar-box-item{
+    max-width: 415px;
+    background: #FFFFFF;
+    box-shadow: 0px 10px 60px rgba(28, 35, 31, 0.07);
+    border-radius: 12px;
+    padding: 32px 40px 35px;
+    @media #{$xs}{
+        padding: 32px 30px 35px;
+    }
+    & h6{
+        margin-bottom: 19px;
+    }
+    & ul.avatar-images{
+        display: flex;
+        flex-wrap: wrap;
+        & li{
+            width: 45px;
+            flex: 0 0 45px;
+            &:not(first-child){
+                margin-inline-end: -15px;
+            }
+            & img{
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+            }
+            & .more-icon{
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                background-color: $orange;
+                color: #fff;
+                @extend %flex-center;
+            }
+        }
+    }
+}
+
+/* Experience box */ 
+
+.experience-box{
+    align-items: flex-start;
+    & .icon{
+        flex: 0 0 auto;
+        width: 50px;
+        height: 50px;
+        margin-inline-end: 50px;
+        @media #{$xs}{
+            margin-inline-end: 30px;
+        }
+    }
+    & .big-text{
+        margin-inline-end: 30px;
+        & h2.number{
+            position: relative;
+            font-size: 150px;
+            line-height: .75;
+            @extend %primary-color;
+            @media #{$xs}{
+                font-size: 100px;
+            }
+            & span.symbol{
+                position: absolute;
+                right: -40px;
+                font-size: 32px;
+                vertical-align: top;
+                @extend %secondary-color;
+            }
+        }
+    }
+    & .text{
+        flex-basis: min-content;
+        align-self: flex-end;
+        & h6{
+            font-size: 20px;
+            line-height: 28px;
+        }
+    }
+}

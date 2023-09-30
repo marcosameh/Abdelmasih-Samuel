@@ -1,0 +1,197 @@
+
+/*---=====================
+    11. Contact css 
+======================----*/
+
+/* Contact Icon Box */ 
+
+.contact-icon-box{
+    display: flex;
+    & .icon{
+        flex: 0 0 auto;
+        width: 40px;
+        margin-inline-end: 25px;
+        & i{
+            @extend %primary-color;
+            font-size: 40px;
+        }
+    }
+    & .text{
+        & h4.title{
+            margin-bottom: 15px;
+        }
+        & p{
+            font-size: 18px;
+        }
+    }
+}
+
+
+/* Contact Form */ 
+
+form.contact-form{
+    & .form_control{
+        padding: 0 25px;
+        height: 60px;
+        border: 1px solid rgba(28, 35, 31, 0.1);
+        border-radius: 5px;
+        @include transition(.3s);
+        &::placeholder{
+            @extend %heading;
+        }
+        &:focus{
+            background: #F9F9F7;
+            border-color: #63AC45;
+        }
+    }
+    & textarea.form_control{
+        height: 160px;
+        padding-top: 15px;
+    }
+}
+
+
+/* Accommodation Form */ 
+
+.accommodation-form{
+    & label{
+        position: absolute;
+        top: 0;
+        right: 0;
+        @extend %primary-color;
+    }
+    & .nice-select,
+    & .form_control{
+        background-color: transparent;
+        padding: 0;
+        height: 35px;
+        border-bottom: 1px solid rgba(28, 35, 31, 0.15);
+        margin-bottom: 25px;
+        font-weight: 500;
+        font-size: 20px;
+        padding-bottom: 10px;
+        @include transition(.3s);
+        &::placeholder{
+            @extend %heading;
+        }
+        &:focus{
+            border-color: $heading;
+        }
+    }
+    & .nice-select{
+        height: 40px;
+        line-height: 20px;
+        &:after{
+            @extend %primary-color;
+        }
+    }
+}
+
+.accommodation-form-two{
+    & .form_group{
+        & > span{
+            font-weight: 500;
+            font-size: 18px;
+            color: $heading;
+            margin-bottom: 10px;
+        }
+        & label{
+            position: absolute;
+            right: 20px;
+            top: 56px;
+            & i{
+                @extend %primary-color;
+            }
+        }
+        & .form_control,
+        & .nice-select{
+            height: 60px;
+            padding: 0 20px;
+            background-color: #FFFFFF;
+            border: 1px solid rgba(28, 35, 31, 0.15);
+            box-shadow: 0px 10px 60px rgba(28, 35, 31, 0.1);
+            border-radius: 5px;
+            color: $gray;
+        }
+        & .nice-select{
+            line-height: 60px;
+            &:after{
+                right: 20px;
+            }
+        }
+        & .main-btn{
+            width: 100%;
+            padding: 20px 30px;
+            line-height: 20px;
+            @media #{$lp}{
+                padding: 20px 20px;
+            }
+        }
+    }
+}
+
+.accommodation-form-three{
+    & label{
+        position: absolute;
+        right: 0;
+        top: 0;
+        & i{
+            @extend %primary-color;
+        }
+    }
+    & .nice-select,
+    & .form_control{
+        background-color: transparent;
+        padding: 0;
+        height: 35px;
+        border-bottom: 1px solid rgba(28, 35, 31, 0.15);
+        filter: drop-shadow(0px 10px 60px rgba(28, 35, 31, 0.1));
+        margin-bottom: 25px;
+        font-weight: 500;
+        font-size: 20px;
+        padding-bottom: 10px;
+        @include transition(.3s);
+        &::placeholder{
+            color: $heading;
+        }
+        &:focus{
+            border-color: rgba(28, 35, 31, 0.15);
+        }
+    }
+    & .nice-select{
+        line-height: 20px;
+        &:after{
+            @extend %primary-color;
+        }
+        & .list{
+            & li{
+                font-weight: 400;
+            }
+        }
+    }
+}
+
+/* Map Box */ 
+
+.map-box{
+    & iframe{
+        display: inherit;
+        width: 100%;
+        border: none;
+        min-height: 500px;
+    }
+}
+
+/* Contact Page Map */
+
+.contact-page-map {
+    & .map-box {
+        & iframe {
+            min-height: 650px;
+
+            @media #{$xs} {
+                min-height: 300px;
+            }
+        }
+    }
+}

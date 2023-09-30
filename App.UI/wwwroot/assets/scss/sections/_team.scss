@@ -1,0 +1,82 @@
+
+
+/*---==================
+    07. Team css 
+=================----*/
+
+.single-team-item{
+    border-radius: 12px;
+    &:hover{
+        & .member-img{
+            & .hover-content,
+            & .hover-overlay{
+                visibility: visible;
+                opacity: 1;
+            }
+            & .hover-content{
+                & ul.social-link{
+                    @include transform(translateY(0px));
+                }
+            }
+        }
+    }
+    & .member-img{
+        position: relative;
+        overflow: hidden;
+        & img{
+            width: 100%;
+            border-radius: 12px;
+        }
+        & .hover-overlay{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background-color: rgba(28, 35, 31, 0.2);
+            visibility: hidden;
+            opacity: 0;
+            @include transition(.3s);
+        }
+        & .hover-content{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 15px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: flex-end;
+            visibility: hidden;
+            opacity: 0;
+            @include transition(.4s);
+            & ul.social-link{
+                background-color: $orange;
+                padding: 10px 15px;
+                border-radius: 5px;
+                @include transform(translateY(-50px));
+                @include transition(.5s);
+                & li{
+                    margin-left: 12.5px;
+                    margin-right: 12.5px;
+                    & a{
+                        color: #fff;
+                        &:hover{
+                            @extend %heading;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    & .member-info{
+        padding-top: 30px;
+        & h4.title{
+            font-size: 22px;
+            line-height: 120%;
+            margin-bottom: 5px;
+        }
+    }
+}

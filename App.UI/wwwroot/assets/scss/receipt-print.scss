@@ -1,0 +1,87 @@
+﻿@media print {
+    header, footer, .btn--booking, .page-banner, .back-to-top {
+        display: none !important;
+    }
+
+    .booking-voucher {
+        padding: 0 !important;
+
+        .receipt-content {
+            box-shadow: none;
+        }
+
+        .title--initial {
+            font-size: 23px;
+
+            svg, br {
+                display: none;
+            }
+        }
+
+        .title--primary {
+            text-align: center;
+            font-size: 18px;
+            text-decoration: underline from-font #767676;
+
+            span {
+                text-decoration: underline from-font #767676;
+            }
+        }
+
+        strong {
+            font-size: 13px;
+        }
+
+        p {
+            font-size: 11px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            margin: 0 0 15px;
+        }
+
+        .table-responsive, .bg-gray {
+            margin-top: 0 !important;
+        }
+    }
+
+    .table {
+        thead tr th {
+            font-size: 14px;
+        }
+
+        tbody tr {
+            td {
+                padding: 0px 35px;
+                font-size: 12px
+            }
+
+            .total, .total-price {
+                font-size: 14px;
+            }
+        }
+    }
+
+    .col-lg-4 {
+        flex: 0 0 auto;
+        width: 33.33333333%;
+    }
+
+    .address-block {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+
+    .pe-md-5 {
+        padding-right: 0 !important;
+    }
+
+    .ps-md-5 {
+        padding-left: 0 !important;
+    }
+
+    .px-md-5 {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
+}

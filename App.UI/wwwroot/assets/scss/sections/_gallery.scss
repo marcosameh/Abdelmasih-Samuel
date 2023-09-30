@@ -1,0 +1,267 @@
+
+
+/*---==================
+    06. Gallery css 
+=================----*/
+
+/* Gallery Filter  */ 
+
+.gallery-filter-button{
+    & .gallery-btn{
+        display: flex;
+        justify-content: center;
+        border-bottom: 1px solid rgba(28, 35, 31, 0.1);
+        @media #{$xs}{
+            flex-wrap: wrap;
+        }
+        & li{
+            position: relative;
+            padding: 0 35px 20px;
+            font-weight: 500;
+            font-size: 18px;
+            @extend %heading;
+            cursor: pointer;
+            @media #{$lm}{
+                padding: 0 15px 20px;
+                font-size: 15px;
+            }
+            &:after{
+                position: absolute;
+                content: '';
+                bottom: -2px;
+                left: 0;
+                width: 100%;
+                height: 4px;
+                background-color: $orange;
+                visibility: visible;
+                opacity: 0;
+                @include transition(.3s);
+                @media #{$xs}{
+                    display: none;
+                }
+            }
+            &.active{
+                @extend %primary-color;
+                &:after{
+                    visibility: visible;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+/* Gallery Slider  */ 
+
+.gallery-slider-one{
+    margin-left: -15px;
+    margin-right: -15px;
+    .gallery-item{
+        margin-left: 15px;
+        margin-right: 15px; 
+    }
+}
+.gallery-slider-two{
+    margin-left: -15px;
+    margin-right: -15px;
+    .single-gallery-item-two{
+        margin-left: 15px;
+        margin-right: 15px; 
+    }
+}
+
+/* Gallery Item  */ 
+
+.gallery-item{
+    &:hover{
+        & .gallery-img{
+            & .hover-overlay{
+                visibility: visible;
+                opacity: 1;
+                & .hover-content{
+                    visibility: visible;
+                    opacity: 1;
+                    @include transform(translateY(0px));
+                }
+            }
+        }
+    }
+    & .gallery-img{
+        position: relative;
+        overflow: hidden;
+        & img{
+            width: 100%;
+        }
+        & .hover-overlay{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(28, 35, 31, 0.85);
+            @extend %flex-center;
+            visibility: hidden;
+            opacity: 0;
+            @include transition(.3s);
+            & .hover-content{
+                visibility: hidden;
+                opacity: 0;
+                @include transform(translateY(50px));
+                @include transition(.4s);
+                & .icon-btn{
+                    width: 85px;
+                    height: 85px;
+                    border-radius: 50%;
+                    background-color: $orange;
+                    @extend %flex-center;
+                    display: inline-flex;
+                    margin-bottom: 40px;
+                }
+                & h4.title{
+                    margin-bottom: 15px;
+                }
+                & .cat-link{
+                    display: inline-flex;
+                    align-items: center;
+                    &:after,
+                    &:before{
+                        content: '';
+                        width: 50px;
+                        height: 1px;
+                        background-color: #fff;
+                    }
+                    &:before{
+                        margin-inline-end: 25px;
+                    }
+                    &:after{
+                        margin-inline-start: 25px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.single-gallery-item{
+    &:hover{
+        & .gallery-img{
+            & .hover-overlay{
+                visibility: visible;
+                opacity: 1;
+            }
+            & .hover-content{
+                visibility: visible;
+                opacity: 1;
+                & .icon-btn{
+                    @include transform(translateY(0px));
+                }
+            }
+        }
+    }
+    & .gallery-img{
+        position: relative;
+        overflow: hidden;
+        & img{
+            width: 100%;
+        }
+        & .hover-overlay{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(28, 35, 31, 0.4);
+            visibility: hidden;
+            opacity: 0;
+            @include transition(.3s);
+        }
+        & .hover-content{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            @extend %flex-center;
+            visibility: hidden;
+            opacity: 0;
+            @include transition(.4s);
+            & .icon-btn{
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+                background-color: $orange;
+                color: #fff;
+                @extend %flex-center;
+                @include transform(translateY(30px));
+                @include transition(.5s);
+            }
+        }
+    }
+    & .gallery-content{
+        padding-top: 10px;
+        & h4.title{
+            margin-bottom: 5px;
+                font-size: 22px;
+            @media #{$lm}{
+                font-size: 17px;
+            }
+        }
+        & .cat-link{
+            &:hover{
+                @extend %primary-color;
+            }
+        }
+    }
+}
+
+.single-gallery-item-two{
+    &:hover{
+        & .gallery-img{
+            & .hover-content{
+                visibility: visible;
+                opacity: 1;
+                & .inner-content{
+                    @include transform(translateY(0px));
+                }
+            }
+        }
+    }
+    & .gallery-img{
+        position: relative;
+        overflow: hidden;
+        & img{
+            width: 100%;
+        }
+        & .hover-content{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            padding: 65px 60px;
+            visibility: hidden;
+            opacity: 0;
+            @include transition(.3s);
+            & .inner-content{
+                @include transform(translateY(-30px));
+                @include transition(.4s);
+                & .cat-btn{
+                    font-weight: 500;
+                    line-height: 24px;
+                    background-color: #fff;
+                    padding: 5px 14px;
+                    @extend %heading;
+                }
+                & h6{
+                    background-color: $orange;
+                    padding: 10px 15px;
+                    font-size: 20px;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}

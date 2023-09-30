@@ -1,0 +1,270 @@
+
+/*---=====================
+    08. Testimonial css 
+======================----*/
+
+/* Testimonial Arrows */ 
+
+.testimonial-arrows{
+    display: flex;
+    & .slick-arrow{
+        width: 65px;
+        height: 65px;
+        border-radius: 50%;
+        @extend %flex-center;
+        border: 1px solid rgba(28, 35, 31, 0.1);
+        cursor: pointer;
+        z-index: 1;
+        &:hover{
+            border-color: $orange;
+        }
+        &.next{
+            margin-inline-start: 15px;
+        }
+    }
+}
+
+/* Testimonial Item */ 
+
+
+.author-title-thumb{
+    align-items: center;
+    & .author-thumb{
+        flex: 0 0 auto;
+        width: 85px;
+        height: 85px;
+        margin-inline-end: 30px;
+    }
+    & .author-title{
+        & h3.title{
+            font-size: 27px;
+            line-height: 165%;
+        }
+        & p.position{
+            font: 300 18px $prompt;
+            line-height: 165%;
+        }
+    }
+}
+
+
+
+.single-testimonial-item{
+    & .testimonial-content{
+        & .author-title-thumb{
+            text-align: left;
+        }
+        & > p{
+            font: 300 24px $prompt;
+            line-height: 165%;
+            margin-bottom: 23px;
+            @media #{$xs}{
+                font: 300 22px $prompt;
+            }
+        }
+    }
+}
+
+.single-testimonial-item-two {
+    & .testimonial-content {
+        & .quote {
+            & i {
+                font-size: 55px;
+            }
+        }
+
+        & > p {
+            font-size: 30px;
+            line-height: 40px;
+            margin-bottom: 25px;
+
+            @media #{$xs} {
+                font-size: 24px;
+                line-height: 36px;
+            }
+        }
+    }
+
+    & .author-title-thumb {
+        & .author-thumb {
+            flex: 0 0 auto;
+            width: 85px;
+            height: 85px;
+
+            & img {
+                width: 100%;
+                border-radius: 50%;
+            }
+        }
+    }
+}
+
+
+.single-testimonial-item-three{
+    padding: 0 170px;
+    border-left: 1px solid rgba(28, 35, 31, 0.1);
+    border-right: 1px solid rgba(28, 35, 31, 0.1);
+    @media #{$lp}{
+        padding: 0 70px;
+    }
+    @media #{$lm}{
+        padding: 0 30px;
+    }
+    @media #{$xss}{
+        padding: 0 15px;
+        border: none;
+    }
+    & .testimonial-inner-content{
+        display: flex;
+        align-items: center;
+        @media #{$xm}{
+            align-items: flex-start;
+            flex-direction: column;  
+        }
+        & .testimonial-thumb{
+            flex: 0 0 auto;
+            width: 300px;
+            height: 310px;
+            margin-inline-end: 70px;
+            @media #{$xm}{
+                margin-bottom: 50px;
+            }
+            & img{
+                border-radius: 150px 30px 150px 150px;
+                @media #{$xm}{
+                    border-radius: 0 150px 150px 150px;
+                }
+            }
+        }
+        & .testimonial-content{
+            position: relative;
+            z-index: 1;
+            &:after{
+                position: absolute;
+                top: 50px;
+                right: 0;
+                content: '\f133';
+                font-family: flaticon_qampin !important;
+                font-size: 200px;
+                color: rgba(28, 35, 31, 0.05);
+            }
+            & .author-title{
+                & h4{
+                    margin-bottom: 5px;
+                }
+            }
+            & > p{
+                font-size: 24px;
+                line-height: 40px;
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
+
+.testimonial-slider-three{
+    & .slick-arrow{
+        position: absolute;
+        top: 35%;
+        @include transform(translateY(-35%));
+        cursor: pointer;
+        z-index: 1;
+        width: 65px;
+        height: 65px;
+        border-radius: 50%;
+        @extend %flex-center;
+        border: 1px solid rgba(28, 35, 31, 0.1);
+        &.prev{
+            left: -135px;
+            @media #{$lp}{
+                left: -100px;
+            }
+        }
+        &.next{
+            right: -135px;
+            @media #{$lp}{
+                right: -100px;
+            }
+        }
+    }
+    & .slick-dots{
+        text-align: center;
+        margin-top: 80px;
+        & li{
+            position: relative;
+            width: 20px;
+            height: 20px;
+            border: 1px solid transparent;
+            border-radius: 50%;
+            &:after{
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                @include transform(translate(-50%,-50%));
+                content: '';
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background-color: $orange;
+            }
+            &.slick-active{
+                border-color: $orange;
+            }
+        }
+    }
+}
+
+/* Testimonial Image Box */ 
+
+.testimonial-one_image-box{
+    margin-bottom: -120px;
+    & img{
+        max-width: 875px;
+    }
+    @media #{$lp}{
+        margin-bottom: 0px;
+        & img{
+            max-width: 575px;
+        }
+    }
+    @media #{$lm}{
+        margin-bottom: 0px;
+        margin-top: 40px;
+        & img{
+            max-width: 100%;
+        }
+    }
+}
+
+/* Partners Slider */ 
+
+.partner-slider-one{
+    border-top: 1px solid rgba(28, 35, 31, 0.1);
+    margin-left: -50px;
+    margin-right: -50px;
+    @media #{$lm}{
+        margin-left: -30px;
+        margin-right: -30px;
+    }
+    @media #{$xs}{
+        margin-left: -12px;
+        margin-right: -12px;
+    }
+    & .slick-track{
+        display: flex;
+        align-items: center;
+    }
+    & .single-partner-item{
+        padding-left: 50px;
+        padding-right: 50px;
+        text-align: center;
+        @media #{$lm}{
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+        @media #{$xs}{
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+    }
+}

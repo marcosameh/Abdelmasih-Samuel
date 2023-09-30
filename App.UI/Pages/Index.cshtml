@@ -1,0 +1,43 @@
+﻿@page
+@model IndexModel
+@using AppCore.Utilities
+<!--====== Start Banner Section ======-->
+<section class="banner-section">
+    <div class="hero-wrapper-one p-r z-1">
+        <div class="hero-dots"></div>
+        <div class="hero-slider-one">
+            @foreach (var (banner, index) in Model.HomeBanners.WithIndex())
+            {
+                <!--====== Single Slider ======-->
+                <div class="single-slider p-r z-1" data-title="@banner.Title">
+                    <div class="image-layer bg_cover" style="background-image: url('@banner.PhotoPath');">
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="hero-content text-white">
+                                    <span class="sub-title" data-animation="fadeInDown" data-delay=".4s">
+                                        <span class="number">@(index + 1)</span>@banner.Title
+                                    </span>
+                                    <h1 data-animation="fadeInUp" data-delay=".6s">
+                                        @banner.SubTitle
+                                    </h1>
+                                   @*  <div class="hero-button" data-animation="fadeInDown" data-delay=".8s">
+                                        <a asp-href="@banner.Link" class="main-btn btn-yellow">
+                                            @banner.LinkText<i class="far fa-angle-double-right"></i>
+                                        </a>
+                                    </div> *@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</section>
+
+
+

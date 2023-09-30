@@ -1,0 +1,41 @@
+
+// Font Family
+
+$prompt: 'Prompt', sans-serif;
+
+// Font Size
+
+$h1-font: 120px;
+$h2-font: 45px;
+$h3-font: 30px;
+$h4-font: 27px;
+$h5-font: 24px;
+$h6-font: 22px;
+
+// Colors
+
+$heading: #1C231F;
+
+$gray: #484848;
+
+$orange: #F7921E;
+
+$white: #Fff;
+
+$red: #EE3840;
+
+$brown: #523A1D;
+
+// Responsive Variables
+
+$xl: 'only screen and (min-width: 1200px)';
+$lp: 'only screen and (min-width: 1200px) and (max-width: 1600px)';
+$minlp: '(min-width: 1367px)';
+$maxlp: '(max-width: 1366px)';
+$lm : '(max-width: 1199px)';
+$lg : 'only screen and (min-width: 992px) and (max-width: 1199px)';
+$xm:'(max-width: 991px)';
+$md:'only screen and (min-width: 768px) and (max-width: 991px)';
+$xs:'(max-width: 767px)';
+$xss:'(max-width: 575px)';
+$sm: 'only screen and (min-width: 576px) and (max-width: 767px)';

@@ -1,0 +1,238 @@
+﻿@using System.Globalization
+@using AppCore.DTO;
+@using AppCore.Utilities
+@using App.UI.Models
+@model PageModelBase
+@inject AppCore.Managers.BusinessInfoManager BusinessInfoManager
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>@ViewData["Title"]</title> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="@ViewData["MetaDescription"]">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="facebook-domain-verification" content="bzu71uqffj2be90yenbylxs7ifv5iv" />
+    <!-- Font Family --->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon --->
+    <partial name="_Favicon"></partial>
+
+    <!-- Stylesheets --->
+    <environment include="Development">
+        <link rel="stylesheet" href="/assets/fonts/fontawesome/css/all.min.css">
+        <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/vendor/magnific-popup/dist/magnific-popup.css">
+        <link rel="stylesheet" href="/assets/vendor/slick/slick.css">
+        <link rel="stylesheet" href="/assets/vendor/jquery-ui/jquery-ui.min.css">
+        <link rel="stylesheet" href="/assets/vendor/flags/flags.css">
+        <link rel="stylesheet" href="/assets/vendor/animate.css">
+        <link rel="stylesheet" href="/assets/fonts/flaticon/flaticon.css">
+        <link rel="stylesheet" href="/lib/limonte-sweetalert2/sweetalert2.min.css">
+        <link rel="stylesheet" href="/lib/toastr.js/toastr.min.css">
+        <link rel="stylesheet" href="/assets/css/default.css" asp-append-version="true">
+        <link rel="stylesheet" href="/assets/scss/style.css" asp-append-version="true">
+        @RenderSection("Styles", required: false)
+    </environment>
+    <environment include="Staging, Production">
+
+        @RenderSection("Styles", required: false)
+        <link href="/assets/bundle.min.css" asp-append-version="true" rel="stylesheet">
+    </environment>
+  
+   
+    
+ 
+</head>
+<body>
+
+    <!--====== Search From ======-->
+    <div class="modal fade search-modal" id="search-modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form>
+                    <div class="form_group">
+                        <input type="text" class="form_control" placeholder="Search here" name="search">
+                        <label><i class="fa fa-search"></i></label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div><!--====== Search From ======-->
+    <!--====== Start Header ======-->
+    <header class="header-area">
+        <!--=== Header Navigation ===-->
+        <div class="header-navigation default-navigation">
+            <div class="nav-overlay"></div>
+            <div class="container-fluid">
+                <!--=== Primary Menu ===-->
+                <div class="primary-menu">
+                    <!--=== Site Branding ===-->
+                    <div class="site-branding">
+                        <a asp-href="/" class="brand-logo">
+                            <img src="/assets/images/logo/Logo.svg" alt="Scorpion Safari">
+                        </a>
+                    </div>
+                    <!--=== Nav Inner Menu ===-->
+                    <div class="nav-menu">
+                        <!--=== Mobile Logo ===-->
+                        <div class="mobile-logo mb-30 d-block d-xl-none text-center">
+                            <a asp-href="/" class="brand-logo">
+                                <img src="/assets/images/logo/Logo.svg" alt="Scorpion Safari">
+                            </a>
+                        </div>
+                        <!--=== Main Menu ===-->
+                        <nav class="main-menu">
+                            <ul>
+                                <li class="menu-item"><a asp-href="/"><localize key='K4_Home' default-text='Home' /></a></li>
+                                <li class="menu-item"><a asp-href="/activities"><localize key='K5_Activities' default-text='Activities' /></a></li>
+                                <li class="menu-item"><a asp-href="/stations"><localize key='K6_Stations' default-text='Stations' /></a></li>
+                                <li class="menu-item"><a asp-href="/gallery"><localize key='K7_Gallery' default-text='Gallery' /></a></li>
+                                <li class="menu-item"><a asp-href="/blog"><localize key='K8_Blog' default-text='Blog' /></a></li>
+                                <li class="menu-item"><a asp-href="/faqs"><localize key='K9_FAQs' default-text='FAQs' /></a></li>
+                                <li class="menu-item"><a asp-href="/about-us"><localize key='K10_AboutUs' default-text='About Us' /></a></li>
+                                <li class="menu-item"><a asp-href="/contact-us"><localize key='K11_Contact' default-text='Contact' /></a></li>
+                                <li class="d-block d-xl-none">
+                                    <a href="@Model.BusinessInfo.WhatsAppLink" target="_blank" class="fw-500">
+                                        <i class="fab fa-whatsapp fs-22 whatsapp-icon mr-5 align-middle"></i>@Model.BusinessInfo.PhoneNumbers.FirstOrDefault().FormattedNumber
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+              
+
+                  
+                </div>
+            </div>
+        </div>
+    </header>
+
+    @RenderBody()
+
+   @*  <!--====== Start Footer ======-->
+    <footer class="footer-default dark-black-bg text-white">
+        <div class="container">
+            <div class="footer-widget-area pt-lg-5 mt-lg-2 pt-4">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 pe-lg-5">
+                        <div class="footer-widget about-company-widget mb-4">
+                            <a href="/" class="footer-logo"><img src="/assets/images/logo/logo-white.svg" alt="Brand Logo"></a>
+                            <p>
+                                <localize key='K19_' default-text='Scorpion Safari offers unforgettable desert experiences in El Gouna and Hurghada, including
+                                stargazing, camel rides, quad biking adventures, and more. Discover the beauty and thrill of
+                                the Egyptian desert with us.' />
+                            </p>
+                            <ul class="social-link">
+                                @foreach (var link in BusinessInfoManager.GetSocialLinks())
+                                {
+                                    <li><a href="@link.Link" target="_blank"><i class="fab fa-@link.CssClass"></i></a></li>
+
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <div class="footer-widget footer-nav-widget pl-lg-20 mb-4">
+                            <h4 class="widget-title"><localize key='K22_Services' default-text='Services' /></h4>
+                            <div class="footer-nav-content">
+                                <ul class="footer-nav">
+                                    <li><a asp-href="/"><localize key='K4_Home' default-text='Home' /></a></li>
+                                    <li><a asp-href="/activities"><localize key='K5_Activities' default-text='Activities' /></a></li>
+                                    <li><a asp-href="/blog"><localize key='K8_Blog' default-text='Blog' /></a></li>
+                                    <li><a asp-href="/about-us"><localize key='K10_AboutUs' default-text='About Us' /></a></li>
+                                    <li><a asp-href="/contact-us"><localize key='K27_ContactUs' default-text='Contact Us' /></a></li>
+                                    <li><a asp-href="/terms-conditions"><localize key='K28_TermsConditions' default-text='Terms Conditions' /></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-widget footer-newsletter-widget mb-4">
+                            <h4 class="widget-title"><localize key='K29_Newsletter' default-text='Newsletter' /></h4>
+                            <div class="newsletter-content">
+                                <p><localize key='K30_' default-text='Stay in the loop with Scorpion Safari! Sign up for our newsletter to get exclusive access to new tours, special offers, and promotions.' /></p>
+                                <form id="form" method="post">
+                                    <div class="form_group">
+                                        <input type="email" class="form_control px-3 text-white" id="newsletterEmail" placeholder="Email Address" required="">
+                                        <label><button type="submit"><i class="far fa-arrow-right"></i></button></label>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-widget contact-info-widget pl-lg-30 mb-4">
+                            <div class="contact-info-box mb-20">
+                                <h4 class="title"><localize key='K31_Location' default-text='Location' /></h4>
+                                <p><span>@Model.BusinessInfo.Address</span></p>
+                            </div>
+                            <div class="contact-info-box mb-20">
+                                <h4 class="title"><localize key='K11_Contact' default-text='Contact' /></h4>
+                                <p><a href="mailto:@Model.BusinessInfo.ContactUsEmail">@Model.BusinessInfo.ContactUsEmail</a></p>
+                                @foreach (var phone in Model.BusinessInfo.PhoneNumbers)
+                                {
+
+                                    <p><a href="tel:+@phone.FormattedNumber">@phone.FormattedNumber</a></p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--=== Copyright Area ===-->
+            <div class="copyright-area">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="copyright-text">
+                            <p>&copy; @DateTime.Now.Year <span class="text-orange"><localize key='K39_ScorpionSafari' default-text='Scorpion Safari' /></span><localize key='K40_,AllRightsReserved' default-text=', All Rights Reserved' /></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="copyright-nav float-lg-end">
+                            <p><localize key='K41_Poweredby' default-text='Powered by' /> <a href="http://innovixsolutions.com" target="_blank" class="text-orange">Innovix Solutions</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer> *@
+
+    <!--====== Back To Top  ======-->
+    <a href="#" class="back-to-top"><i class="far fa-angle-up"></i></a>
+
+
+    <environment include="Development">
+        <script src="/assets/vendor/jquery-3.6.0.min.js"></script>
+        <script src="/assets/vendor/popper/popper.min.js"></script>
+        <script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/assets/vendor/slick/slick.min.js"></script>
+        <script src="/assets/vendor/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+        <script src="/assets/vendor/isotope.min.js"></script>
+        <script src="/assets/vendor/imagesloaded.min.js"></script>
+        <script src="/assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+        <script src="/assets/vendor/wow.min.js"></script>
+        <script src="/lib/limonte-sweetalert2/sweetalert2.min.js"></script>
+        <script src="/lib/axios/axios.min.js"></script>
+        <script src="/assets/js/theme.js" asp-append-version="true"></script>
+        <script src="/js/app/ui.js" asp-append-version="true"></script>
+    </environment>
+
+    <environment include="Production">
+        <script src="/assets/bundle.js" asp-append-version="true"></script>
+    </environment>
+
+
+
+    @RenderSection("Scripts", required: false)
+
+    
+  
+</body>
+</html>
