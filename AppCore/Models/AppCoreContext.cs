@@ -69,6 +69,10 @@ public partial class AppCoreContext : DbContext
 
     public virtual DbSet<NewsletterSubscription> NewsletterSubscriptions { get; set; }
 
+    public virtual DbSet<Section> Sections { get; set; }
+
+    public virtual DbSet<SectionPhoto> SectionPhotos { get; set; }
+
     public virtual DbSet<Setting> Settings { get; set; }
 
     public virtual DbSet<SettingCategory> SettingCategories { get; set; }
@@ -607,6 +611,32 @@ public partial class AppCoreContext : DbContext
             entity.Property(e => e.SubscriptionDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("smalldatetime");
+        });
+
+        modelBuilder.Entity<Section>(entity =>
+        {
+            entity.ToTable("Section");
+
+            entity.Property(e => e.Description).IsRequired();
+            entity.Property(e => e.DisplayOrder).HasDefaultValueSql("((99))");
+            entity.Property(e => e.Title)
+                .IsRequired()
+                .HasMaxLength(60);
+            entity.Property(e => e.YoutubeVideo).HasMaxLength(120);
+        });
+
+        modelBuilder.Entity<SectionPhoto>(entity =>
+        {
+            entity.ToTable("SectionPhoto");
+
+            entity.Property(e => e.Photo)
+                .IsRequired()
+                .HasMaxLength(100);
+
+            entity.HasOne(d => d.Section).WithMany(p => p.SectionPhotos)
+                .HasForeignKey(d => d.SectionId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_SectionPhoto_Section");
         });
 
         modelBuilder.Entity<Setting>(entity =>

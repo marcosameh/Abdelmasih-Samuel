@@ -324,6 +324,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PageId" Type="int" Nullable="false" />
+          <Property Name="OpenGraphImage" Type="nvarchar" MaxLength="80" />
         </EntityType>
         <EntityType Name="MetaTagLocalized">
           <Key>
@@ -348,14 +349,6 @@
           <Property Name="Thumbnail" Type="nvarchar" MaxLength="250" />
           <Property Name="Active" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="NewsletterSubscription">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="SubscriptionDate" Type="smalldatetime" Nullable="false" />
-        </EntityType>
         <EntityType Name="NewsLocalized">
           <Key>
             <PropertyRef Name="NewsId" />
@@ -368,6 +361,24 @@
           <Property Name="MetaTitle" Type="nvarchar" MaxLength="60" />
           <Property Name="MetaDescription" Type="nvarchar" MaxLength="160" />
           <Property Name="ShortDescription" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="YoutubeVideo" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="DisplayOrder" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SectionPhoto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SectionId" Type="int" Nullable="false" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Setting">
           <Key>
@@ -404,18 +415,6 @@
           <Property Name="Link" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="CssClass" Type="nvarchar" MaxLength="20" />
           <Property Name="Active" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="TeamMember">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Photo" Type="nvarchar" MaxLength="60" Nullable="false" />
-          <Property Name="DisplayOrder" Type="int" Nullable="false" />
-          <Property Name="IsActive" Type="bit" />
-          <Property Name="Featured" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Testimonial">
           <Key>
@@ -920,6 +919,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SectionPhoto_Section">
+          <End Role="Section" Type="Self.Section" Multiplicity="1" />
+          <End Role="SectionPhoto" Type="Self.SectionPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SectionPhoto">
+              <PropertyRef Name="SectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SettingsKeys_SettingsCategories">
           <End Role="SettingCategory" Type="Self.SettingCategory" Multiplicity="1" />
           <End Role="Setting" Type="Self.Setting" Multiplicity="*" />
@@ -977,13 +988,13 @@
           <EntitySet Name="MetaTag" EntityType="Self.MetaTag" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MetaTagLocalized" EntityType="Self.MetaTagLocalized" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="NewsletterSubscription" EntityType="Self.NewsletterSubscription" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NewsLocalized" EntityType="Self.NewsLocalized" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Section" EntityType="Self.Section" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SectionPhoto" EntityType="Self.SectionPhoto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Setting" EntityType="Self.Setting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SettingCategory" EntityType="Self.SettingCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SitePage" EntityType="Self.SitePage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SocialLink" EntityType="Self.SocialLink" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TeamMember" EntityType="Self.TeamMember" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Testimonial" EntityType="Self.Testimonial" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestimonialSource" EntityType="Self.TestimonialSource" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -1131,6 +1142,10 @@
             <End Role="MetaTag" EntitySet="MetaTag" />
             <End Role="MetaTagLocalized" EntitySet="MetaTagLocalized" />
           </AssociationSet>
+          <AssociationSet Name="FK_SectionPhoto_Section" Association="Self.FK_SectionPhoto_Section">
+            <End Role="Section" EntitySet="Section" />
+            <End Role="SectionPhoto" EntitySet="SectionPhoto" />
+          </AssociationSet>
           <AssociationSet Name="FK_SettingsKeys_SettingsCategories" Association="Self.FK_SettingsKeys_SettingsCategories">
             <End Role="SettingCategory" EntitySet="SettingCategory" />
             <End Role="Setting" EntitySet="Setting" />
@@ -1176,13 +1191,11 @@
           <EntitySet Name="MetaTags" EntityType="SharedKernelModel.MetaTag" />
           <EntitySet Name="MetaTagLocalizeds" EntityType="SharedKernelModel.MetaTagLocalized" />
           <EntitySet Name="News" EntityType="SharedKernelModel.News" />
-          <EntitySet Name="NewsletterSubscriptions" EntityType="SharedKernelModel.NewsletterSubscription" />
           <EntitySet Name="NewsLocalizeds" EntityType="SharedKernelModel.NewsLocalized" />
           <EntitySet Name="Settings" EntityType="SharedKernelModel.Setting" />
           <EntitySet Name="SettingCategories" EntityType="SharedKernelModel.SettingCategory" />
           <EntitySet Name="SitePages" EntityType="SharedKernelModel.SitePage" />
           <EntitySet Name="SocialLinks" EntityType="SharedKernelModel.SocialLink" />
-          <EntitySet Name="TeamMembers" EntityType="SharedKernelModel.TeamMember" />
           <EntitySet Name="Testimonials" EntityType="SharedKernelModel.Testimonial" />
           <EntitySet Name="TestimonialSources" EntityType="SharedKernelModel.TestimonialSource" />
           <EntitySet Name="Users" EntityType="SharedKernelModel.User" />
@@ -1333,6 +1346,12 @@
           <AssociationSet Name="aspnet_UsersInRoles" Association="SharedKernelModel.aspnet_UsersInRoles">
             <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+          </AssociationSet>
+          <EntitySet Name="Sections" EntityType="SharedKernelModel.Section" />
+          <EntitySet Name="SectionPhotoes" EntityType="SharedKernelModel.SectionPhoto" />
+          <AssociationSet Name="FK_SectionPhoto_Section" Association="SharedKernelModel.FK_SectionPhoto_Section">
+            <End Role="Section" EntitySet="Sections" />
+            <End Role="SectionPhoto" EntitySet="SectionPhotoes" />
           </AssociationSet>
         </EntityContainer>
         <EnumType Name="SocialLinkTypes">
@@ -1715,6 +1734,7 @@
           <Property Name="PageId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="SitePage" Relationship="SharedKernelModel.FK_MetaTag_SitePage" FromRole="MetaTag" ToRole="SitePage" />
           <NavigationProperty Name="MetaTagLocalizeds" Relationship="SharedKernelModel.FK_MetaTagLocalized_MetaTag" FromRole="MetaTag" ToRole="MetaTagLocalized" />
+          <Property Name="OpenGraphImage" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="MetaTagLocalized">
           <Key>
@@ -1741,14 +1761,6 @@
           <Property Name="Thumbnail" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="NewsLocalizeds" Relationship="SharedKernelModel.FK_LocalizedNew_News" FromRole="News" ToRole="NewsLocalized" />
-        </EntityType>
-        <EntityType Name="NewsletterSubscription">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SubscriptionDate" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="NewsLocalized">
           <Key>
@@ -1806,18 +1818,6 @@
           <Property Name="Link" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="CssClass" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="TeamMember">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Photo" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="Featured" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Testimonial">
           <Key>
@@ -2328,6 +2328,38 @@
           <End Type="SharedKernelModel.aspnet_Roles" Role="aspnet_Roles" Multiplicity="*" />
           <End Type="SharedKernelModel.aspnet_Users" Role="aspnet_Users" Multiplicity="*" />
         </Association>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="YoutubeVideo" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SectionPhotoes" Relationship="SharedKernelModel.FK_SectionPhoto_Section" FromRole="Section" ToRole="SectionPhoto" />
+        </EntityType>
+        <EntityType Name="SectionPhoto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SectionId" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Section" Relationship="SharedKernelModel.FK_SectionPhoto_Section" FromRole="SectionPhoto" ToRole="Section" />
+        </EntityType>
+        <Association Name="FK_SectionPhoto_Section">
+          <End Type="SharedKernelModel.Section" Role="Section" Multiplicity="1" />
+          <End Type="SharedKernelModel.SectionPhoto" Role="SectionPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SectionPhoto">
+              <PropertyRef Name="SectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2660,6 +2692,7 @@
           <EntitySetMapping Name="MetaTags">
             <EntityTypeMapping TypeName="SharedKernelModel.MetaTag">
               <MappingFragment StoreEntitySet="MetaTag">
+                <ScalarProperty Name="OpenGraphImage" ColumnName="OpenGraphImage" />
                 <ScalarProperty Name="PageId" ColumnName="PageId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -2685,15 +2718,6 @@
                 <ScalarProperty Name="UrlName" ColumnName="UrlName" />
                 <ScalarProperty Name="GroupId" ColumnName="GroupId" />
                 <ScalarProperty Name="NewsDate" ColumnName="NewsDate" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="NewsletterSubscriptions">
-            <EntityTypeMapping TypeName="SharedKernelModel.NewsletterSubscription">
-              <MappingFragment StoreEntitySet="NewsletterSubscription">
-                <ScalarProperty Name="SubscriptionDate" ColumnName="SubscriptionDate" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2751,19 +2775,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TeamMembers">
-            <EntityTypeMapping TypeName="SharedKernelModel.TeamMember">
-              <MappingFragment StoreEntitySet="TeamMember">
-                <ScalarProperty Name="Featured" ColumnName="Featured" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
-                <ScalarProperty Name="Photo" ColumnName="Photo" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Testimonials">
             <EntityTypeMapping TypeName="SharedKernelModel.Testimonial">
               <MappingFragment StoreEntitySet="Testimonial">
@@ -2806,6 +2817,26 @@
               <ScalarProperty Name="RoleId" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Sections">
+            <EntityTypeMapping TypeName="SharedKernelModel.Section">
+              <MappingFragment StoreEntitySet="Section">
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="YoutubeVideo" ColumnName="YoutubeVideo" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SectionPhotoes">
+            <EntityTypeMapping TypeName="SharedKernelModel.SectionPhoto">
+              <MappingFragment StoreEntitySet="SectionPhoto">
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

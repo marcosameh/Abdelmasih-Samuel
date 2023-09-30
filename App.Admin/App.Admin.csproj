@@ -373,6 +373,20 @@
     <Compile Include="DynamicData\CustomPages\MetaTags\List.aspx.designer.cs">
       <DependentUpon>List.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DynamicData\CustomPages\Sections\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DynamicData\CustomPages\Sections\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicData\CustomPages\Sections\Insert.aspx.cs">
+      <DependentUpon>Insert.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DynamicData\CustomPages\Sections\Insert.aspx.designer.cs">
+      <DependentUpon>Insert.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DynamicData\CustomPages\Settings\List.aspx.cs">
       <DependentUpon>List.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -909,10 +923,13 @@
     <Compile Include="Model\News.cs">
       <DependentUpon>AdminModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\NewsletterSubscription.cs">
+    <Compile Include="Model\NewsLocalized.cs">
       <DependentUpon>AdminModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\NewsLocalized.cs">
+    <Compile Include="Model\Section.cs">
+      <DependentUpon>AdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SectionPhoto.cs">
       <DependentUpon>AdminModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Setting.cs">
@@ -929,9 +946,6 @@
       <DependentUpon>AdminModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\SocialLinkTypes.cs">
-      <DependentUpon>AdminModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\TeamMember.cs">
       <DependentUpon>AdminModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Testimonial.cs">
@@ -1006,6 +1020,8 @@
     <Content Include="DynamicData\CustomPages\Admins\Insert.aspx" />
     <Content Include="DynamicData\CustomPages\Faqs\List.aspx" />
     <Content Include="DynamicData\CustomPages\MetaTags\List.aspx" />
+    <Content Include="DynamicData\CustomPages\Sections\Edit.aspx" />
+    <Content Include="DynamicData\CustomPages\Sections\Insert.aspx" />
     <Content Include="DynamicData\CustomPages\Settings\List.aspx" />
     <Content Include="DynamicData\CustomPages\SocialLinks\List.aspx" />
     <Content Include="DynamicData\CustomPages\Users\Edit.aspx" />

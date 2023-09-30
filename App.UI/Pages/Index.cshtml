@@ -39,5 +39,140 @@
     </div>
 </section>
 
+<!-- Introduction Section -->
+<section class="services-section pt-90 pb-100 light-gray-bg" style="background-image: url(/assets/images/bg/fun-bg-1.png); background-position: bottom;
+    background-repeat-x: repeat; background-repeat-y: no-repeat; background-size: contain;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-7 col-lg-10">
+                <div class="section-title text-center mb-50 wow fadeInDown"> 
+                    <localize key='K17_AmazingSafariFor' default-text='introduction' />
+                    <h4>
+                        <span class="thin d-block">
+                            The environment consists of many components that work together to obtain a distinctive environment. These components are (water, tree canopy, air, and temperature). All these elements significantly affect the population living in a specific area. On this site, we will learn about the extent of the environment’s connection and its impact on humans. Are you ready? Let's fly together on this journey.
+                            First, let us learn about the extent of the impact of these factors on most of Egypt’s governorates by listening to the opinions of our friends.
+                        </span>
+                    </h4>
+                </div>
+            </div>
+        </div>
 
+        @foreach (var (planetSection, index) in Model.PlanetSections.WithIndex())
+        {
+            <!-- Determine if the current section should be displayed on the left or right side -->
+            @if (index % 2 == 0)
+            {
+                <!--====== Hurghada Station ======-->
+                <section class="features-bg-section p-r z-1 pb-5" id="planet_@planetSection.Id">
+                    <div class="container pb-lg-5">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6">
+                                <div class="features-content-box wow fadeInUp pr-lg-60">
+                                    <div class="section-title">
+                                        <span class="sub-title"><span class="number">@(index + 1)</span>@planetSection.Title</span>
+                                    </div>
+                                    <p class="my-4">
+                                        @Html.Raw(planetSection.Description)
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mt-lg-0 mt-4">
+                                <!-- Left-side carousel code -->
+                                <div class="one-item arrows bg-white wow fadeInUp">
+                                    <!-- Check if the YouTube video link is available -->
+                                    @if (!string.IsNullOrEmpty(planetSection.YoutubeVideo))
+                                    {
+                                        <div class="card  mb-4 border-0 overflow-hidden">
+                                            <img src="@planetSection.YoutubeVideo.GetYouTubeVideoThumbmial()" alt="education-video-bg " class="card-img w-100 d-block h-100">
+                                            <div class="card-img-overlay text-center d-flex justify-content-center align-items-center" style="border-radius: 0px;">
+                                                <a class="popup-youtube" href="@planetSection.YoutubeVideo">
+                                                    <div class="stretched-link text-center">
+                                                        <img width="72" src="/Images/icons/Play-video.svg" alt="Play-video">
+                                                        <span class="d-block fw-bold text-white mt-3"><localize key='K19_WatchVideo' default-text='Watch Video' /></span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    }
+                                    @foreach (var photo in planetSection.SectionPhotos)
+                                    {
+                                        <a href="@photo.LargePhotoPath" class="img-popup">
+                                            <img src="@photo.MediemPhotoPath" class="cover" alt="">
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            }
+            else
+            {
+                <!--====== El Gouna Station ======-->
+                <section class="light-gray-bg py-5" id="planet_@planetSection.Id">
+                    <div class="container py-lg-5">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 mt-lg-0 mt-4 order-1 order-lg-0">
+                                <!-- Right-side carousel code -->
+                                <div class="one-item arrows bg-white wow fadeInUp">
+                                    <!-- Check if the YouTube video link is available -->
+                                    @if (!string.IsNullOrEmpty(planetSection.YoutubeVideo))
+                                    {
+                                        <div class="card  mb-4 border-0 overflow-hidden">
+                                            <img src="@planetSection.YoutubeVideo.GetYouTubeVideoThumbmial()" alt="education-video-bg " class="card-img w-100 d-block h-100">
+                                            <div class="card-img-overlay text-center d-flex justify-content-center align-items-center" style="border-radius: 0px;">
+                                                <a class="popup-youtube" href="@planetSection.YoutubeVideo">
+                                                    <div class="stretched-link text-center">
+                                                        <img width="72" src="/Images/icons/Play-video.svg" alt="Play-video">
+                                                        <span class="d-block fw-bold text-white mt-3"><localize key='K19_WatchVideo' default-text='Watch Video' /></span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    }
+                                    @foreach (var photo in planetSection.SectionPhotos)
+                                    {
+                                        <a href="@photo.LargePhotoPath" class="img-popup">
+                                            <img src="@photo.MediemPhotoPath" class="cover" alt="">
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="features-content-box wow fadeInUp pr-lg-60">
+                                    <div class="section-title">
+                                        <span class="sub-title"><span class="number">@(index + 1)</span>@planetSection.Title</span>
+                                    </div>
+                                    <p class="my-4">
+                                        @Html.Raw(planetSection.Description)
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            }
+        }
+    </div>
+</section>
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            initPopUps();
+        });
+        function initPopUps() {
+            $('.popup-youtube').magnificPopup({
+                disableOn: 700,
+                type: 'iframe',
+                mainClass: 'mfp-fade',
+                removalDelay: 160,
+                preloader: false,
+                fixedContentPos: false
+            });
+        }
+
+    </script>
+}
 

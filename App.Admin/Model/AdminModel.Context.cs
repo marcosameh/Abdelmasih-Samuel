@@ -56,15 +56,15 @@ namespace DynamicData.Admin.Model
         public virtual DbSet<MetaTag> MetaTags { get; set; }
         public virtual DbSet<MetaTagLocalized> MetaTagLocalizeds { get; set; }
         public virtual DbSet<News> News { get; set; }
-        public virtual DbSet<NewsletterSubscription> NewsletterSubscriptions { get; set; }
         public virtual DbSet<NewsLocalized> NewsLocalizeds { get; set; }
         public virtual DbSet<Setting> Settings { get; set; }
         public virtual DbSet<SettingCategory> SettingCategories { get; set; }
         public virtual DbSet<SitePage> SitePages { get; set; }
         public virtual DbSet<SocialLink> SocialLinks { get; set; }
-        public virtual DbSet<TeamMember> TeamMembers { get; set; }
         public virtual DbSet<Testimonial> Testimonials { get; set; }
         public virtual DbSet<TestimonialSource> TestimonialSources { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Section> Sections { get; set; }
+        public virtual DbSet<SectionPhoto> SectionPhotoes { get; set; }
     }
 }

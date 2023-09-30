@@ -13,13 +13,23 @@ namespace DynamicData.Admin.Model
 {
 
 
-    #region HiddenTables
-    //[ScaffoldTable(false)]
-    //public partial class MetaTagsLocalized
-    //{
-    //}
+    #region Sections
+
+    [MetadataType(typeof(SectionsMetadata))]
+    public partial class Section
+    {
+
+     
+    }
+
+    public class SectionsMetadata
+    {
+        [UIHint("Html")]
+        public object Description { get; set; }
+        [ScaffoldColumn(false)]
+        public object SectionPhotoes { get; set; }
+    }
 
     #endregion
-
 
 }

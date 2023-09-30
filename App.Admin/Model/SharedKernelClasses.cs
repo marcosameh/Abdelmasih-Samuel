@@ -29,7 +29,7 @@ namespace DynamicData.Admin.Model
         [DisplayName("Page Name")]
         public object SitePage { get; set; }
 
-      
+
         [ScaffoldColumn(false)]
         public object Active { get; set; }
         [ScaffoldColumn(false)]
@@ -354,5 +354,35 @@ namespace DynamicData.Admin.Model
         public object PasswordResetKey { get; set; }
     }
 
+    #endregion
+
+    #region Home Banners
+    [MetadataType(typeof(HomeBanner_Metadata))]
+    [OrderBy("DisplayOrder")]
+    public partial class HomeBanner
+    {
+
+    }
+    public class HomeBanner_Metadata
+    {
+        [UIHint("Photo")]
+        [Photo("photos/home-banners/originals/", "photos/home-banners/")]
+        [PhotoThumbnail(1, 0, "150,58,false,sm,.png", "1920,780,false,lg,.png")]
+        [Hint(Hint = "Photo should be 1920 x 780 pixels or similar aspect ratio")]
+        public object Photo { get; set; }
+
+
+        [ScaffoldColumn(false)]
+        public object HomeBannerLocalizeds { get; set; }
+
+        [ScaffoldColumn(false)]
+        public object VideoUrl { get; set; }
+
+
+        [ScaffoldColumn(false)]
+        public object Link { get; set; }
+
+
+    }
     #endregion
 }

@@ -21,7 +21,7 @@ namespace DynamicData.Admin.Controls.Localized
                 HomeBannerLocalized[] localizedItemsArray = localizedItems.ToArray();
                 lfTitle.FieldValue = localizedItemsArray[0].Title;
                 lfSubTitle.FieldValue = localizedItemsArray[0].SubTitle;
-                //lfLink.FieldValue = localizedItemsArray[0].LinkText;
+                lfLink.FieldValue = localizedItemsArray[0].LinkText;
 
             }
 
@@ -40,7 +40,7 @@ namespace DynamicData.Admin.Controls.Localized
 
                 item.Title = lfTitle.FieldValue;
                 item.SubTitle = lfSubTitle.FieldValue;
-                //item.LinkText = lfLink.FieldValue;
+                item.LinkText = lfLink.FieldValue;
                 db.SaveChanges();
             }
             catch (InvalidOperationException ex)
@@ -61,7 +61,7 @@ namespace DynamicData.Admin.Controls.Localized
                 LanguageId = languageId,
                 Title = lfTitle.FieldValue,
                 SubTitle = lfSubTitle.FieldValue,
-                //LinkText = lfLink.FieldValue,
+                LinkText = lfLink.FieldValue,
             };
             db.HomeBannerLocalizeds.Add(item);
             db.SaveChanges();

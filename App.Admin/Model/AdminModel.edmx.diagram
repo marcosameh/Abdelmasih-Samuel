@@ -36,13 +36,11 @@
         <EntityTypeShape EntityType="SharedKernelModel.MetaTag" Width="1.5" PointX="0.75" PointY="14.875" />
         <EntityTypeShape EntityType="SharedKernelModel.MetaTagLocalized" Width="1.5" PointX="3" PointY="14.5" />
         <EntityTypeShape EntityType="SharedKernelModel.News" Width="1.5" PointX="6.75" PointY="10.5" />
-        <EntityTypeShape EntityType="SharedKernelModel.NewsletterSubscription" Width="1.5" PointX="11.75" PointY="13.5" />
         <EntityTypeShape EntityType="SharedKernelModel.NewsLocalized" Width="1.5" PointX="9" PointY="18.375" />
         <EntityTypeShape EntityType="SharedKernelModel.Setting" Width="1.5" PointX="11" PointY="1.75" />
         <EntityTypeShape EntityType="SharedKernelModel.SettingCategory" Width="1.5" PointX="8.75" PointY="2.125" />
         <EntityTypeShape EntityType="SharedKernelModel.SitePage" Width="1.5" PointX="1.5" PointY="8.625" />
         <EntityTypeShape EntityType="SharedKernelModel.SocialLink" Width="1.5" PointX="13.75" PointY="10.5" />
-        <EntityTypeShape EntityType="SharedKernelModel.TeamMember" Width="1.5" PointX="13.75" PointY="13.5" />
         <EntityTypeShape EntityType="SharedKernelModel.Testimonial" Width="1.5" PointX="11" PointY="9.75" />
         <EntityTypeShape EntityType="SharedKernelModel.TestimonialSource" Width="1.5" PointX="8.75" PointY="10.375" />
         <EntityTypeShape EntityType="SharedKernelModel.User" Width="1.5" PointX="15.75" PointY="10.5" />
@@ -83,6 +81,9 @@
         <AssociationConnector Association="SharedKernelModel.FK_SettingsKeys_SettingsCategories" />
         <AssociationConnector Association="SharedKernelModel.FK_Testimonial_TestimonialSource" />
         <AssociationConnector Association="SharedKernelModel.aspnet_UsersInRoles" />
+        <EntityTypeShape EntityType="SharedKernelModel.Section" Width="1.5" PointX="11.375" PointY="16.875" />
+        <EntityTypeShape EntityType="SharedKernelModel.SectionPhoto" Width="1.5" PointX="13.625" PointY="17.125" />
+        <AssociationConnector Association="SharedKernelModel.FK_SectionPhoto_Section" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

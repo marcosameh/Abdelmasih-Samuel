@@ -4,6 +4,7 @@
 @using App.UI.Models
 @model PageModelBase
 @inject AppCore.Managers.BusinessInfoManager BusinessInfoManager
+@inject AppCore.Managers.SectionManager sectionManager
 
 
 <!DOCTYPE html>
@@ -89,19 +90,12 @@
                         <!--=== Main Menu ===-->
                         <nav class="main-menu">
                             <ul>
-                                <li class="menu-item"><a asp-href="/"><localize key='K4_Home' default-text='Home' /></a></li>
-                                <li class="menu-item"><a asp-href="/activities"><localize key='K5_Activities' default-text='Activities' /></a></li>
-                                <li class="menu-item"><a asp-href="/stations"><localize key='K6_Stations' default-text='Stations' /></a></li>
-                                <li class="menu-item"><a asp-href="/gallery"><localize key='K7_Gallery' default-text='Gallery' /></a></li>
-                                <li class="menu-item"><a asp-href="/blog"><localize key='K8_Blog' default-text='Blog' /></a></li>
-                                <li class="menu-item"><a asp-href="/faqs"><localize key='K9_FAQs' default-text='FAQs' /></a></li>
-                                <li class="menu-item"><a asp-href="/about-us"><localize key='K10_AboutUs' default-text='About Us' /></a></li>
-                                <li class="menu-item"><a asp-href="/contact-us"><localize key='K11_Contact' default-text='Contact' /></a></li>
-                                <li class="d-block d-xl-none">
-                                    <a href="@Model.BusinessInfo.WhatsAppLink" target="_blank" class="fw-500">
-                                        <i class="fab fa-whatsapp fs-22 whatsapp-icon mr-5 align-middle"></i>@Model.BusinessInfo.PhoneNumbers.FirstOrDefault().FormattedNumber
-                                    </a>
-                                </li>
+                                @foreach (var planetSection in sectionManager.GetSections())
+                                {
+                                    <li class="menu-item"><a href="#planet_@planetSection.Id">@planetSection.Title</a></li>
+                                    
+                                }
+                               
                             </ul>
                         </nav>
                     </div>

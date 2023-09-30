@@ -309,7 +309,14 @@ namespace AppCore.Utilities
                 youTubeThumb = YoutubeUrl.Split('/')[1];
             }
 
-            return "http://img.youtube.com/vi/" + youTubeThumb + "/hqdefault.jpg";
+            return "http://img.youtube.com/vi/" + youTubeThumb + "/sddefault.jpg";
+
+
+            //            default.jpg: 120x90 pixels
+            //           mqdefault.jpg: 320x180 pixels
+            //           hqdefault.jpg: 480x360 pixels
+            //           sddefault.jpg: 640x480 pixels
+            //           maxresdefault.jpg: maximum resolution available(usually 1280x720 or 1920x1080 pixels)
         }
 
     }

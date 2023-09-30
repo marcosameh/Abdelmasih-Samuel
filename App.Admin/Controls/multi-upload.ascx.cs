@@ -1,11 +1,10 @@
-﻿using DynamicData.Admin.Infrastructure;
-using System;
-using System.Web.UI;
-using System.Web.Script.Serialization;
-using System.Collections.Generic;
+﻿using DynamicData.Admin.Infrastructure.MultiUploadEntities;
 using DynamicData.Admin.Model;
+using System;
+using System.Collections.Generic;
 using System.Linq;
-using DynamicData.Admin.Infrastructure.MultiUploadEntities;
+using System.Web.Script.Serialization;
+using System.Web.UI;
 
 namespace DynamicData.Admin.Controls
 {
@@ -76,15 +75,16 @@ namespace DynamicData.Admin.Controls
             int itemId = Convert.ToInt32(Request.QueryString["Id"]);
             switch (photoTableName)
             {
-                //case "PropertiesPhotos":
-                //    IQueryable<PropertyPhoto> photos = from l in db.PropertyPhotos where l.PropertyId == itemId select l;
-                //    return photos.Select(x => new EntityPhoto()
-                //    {
-                //        EntityId = x.PropertyId,
-                //        EntityName = "Property",
-                //        PhotoId = x.PhotoId,
-                //        PhotoPath = Setting.FrontendVirtualPath + "/Photos/properties/" + x.Photo.Replace("_lg", "_sm")
-                //    });
+                case "SectionsPhotos":
+                    IQueryable<SectionPhoto> sectionsphotos = from l in db.SectionPhotoes where l.SectionId == itemId select l;
+
+                    return sectionsphotos.Select(x => new EntityPhoto()
+                    {
+                        EntityId = x.SectionId,
+                        EntityName = "sections",
+                        PhotoId = x.Id,
+                        PhotoPath = Setting.FrontendVirtualPath + "/photos/sections/" + x.Photo.Replace("_lg", "_sm")
+                    });
             }
             return null;
         }
@@ -93,24 +93,23 @@ namespace DynamicData.Admin.Controls
         {
             if (UploadedPhotos.Count > 0)
             {
-                int displayOrder = 0;
+
                 string photoTableName = Page.Title + "Photos";
 
                 //ToDo: set cases according to your entity 
                 switch (photoTableName)
                 {
-                    //case "PropertiesPhotos":
-                    //    foreach (UploadedPhoto photo in UploadedPhotos)
-                    //    {
-                    //        db.PropertyPhotos.Add(new PropertyPhoto()
-                    //        {
-                    //            PropertyId = itemId,
-                    //            DisplayOrder = displayOrder,
-                    //            Photo = photo.LargePhotoName
-                    //        });
-                    //        displayOrder++;
-                    //    }
-                    //    break;
+                    case "SectionsPhotos":
+                        foreach (UploadedPhoto photo in UploadedPhotos)
+                        {
+                            db.SectionPhotoes.Add(new SectionPhoto()
+                            {
+                                SectionId = itemId,
+                                Photo = photo.LargePhotoName
+                            });
+
+                        }
+                        break;
                 }
             }
         }
@@ -124,13 +123,13 @@ namespace DynamicData.Admin.Controls
                 //ToDo: set cases according to your entity 
                 switch (photoTableName)
                 {
-                    //case "PropertiesPhotos":
-                    //    foreach (int id in DeletedPhotosIds)
-                    //    {
-                    //        PropertyPhoto photo = db.PropertyPhotos.First(x => x.PhotoId == id);
-                    //        db.PropertyPhotos.Remove(photo);
-                    //    }
-                    //    break;
+                    case "SectionsPhotos":
+                        foreach (int id in DeletedPhotosIds)
+                        {
+                            SectionPhoto photo = db.SectionPhotoes.First(x => x.Id == id);
+                            db.SectionPhotoes.Remove(photo);
+                        }
+                        break;
                 }
             }
         }

@@ -127,6 +127,14 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[Section]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[SectionPhoto]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[Setting]",
          "ObjectType": 0
       },
@@ -151,11 +159,10 @@
          "ObjectType": 0
       }
    ],
-   "UiHint": "MARCO.SharedKernel",
+   "UiHint": "MARCO.AbdelmasihSamuel",
    "UncountableWords": null,
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": false,
-   "UseDateOnlyTimeOnly": false,
    "UseDbContextSplitting": false,
    "UseFluentApiOnly": true,
    "UseHandleBars": false,
