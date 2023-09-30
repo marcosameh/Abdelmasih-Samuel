@@ -117,7 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="key" xml:space="preserve">
-    <value>value</value>
+  <data name="K1_Title" xml:space="preserve">
+    <value>introduction</value>
+  </data>
+  <data name="K2_introduction" xml:space="preserve">
+    <value>The environment consists of many components that work together to obtain a distinctive environment. These components are (water, tree canopy, air, and temperature). All these elements significantly affect the population living in a specific area. On this site, we will learn about the extent of the environment’s connection and its impact on humans. Are you ready? Let's fly together on this journey.
+First, let us learn about the extent of the impact of these factors on most of Egypt’s governorates by listening to the opinions of our friends.</value>
   </data>
 </root>

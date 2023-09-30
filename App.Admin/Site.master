@@ -76,6 +76,9 @@
                         <li><a href="/Account/admin-profile.aspx">
                             <i class="fa fa-lock"></i><span>Change Password</span></a></li>
 
+                        <li><a href="/cms.aspx">
+                            <i class="fa fa-file-text"></i><span>CMS</span></a></li>
+
                     </ul>
                 </div>
                 <!-- leftpanel -->
